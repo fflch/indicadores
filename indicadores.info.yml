@@ -1,0 +1,5 @@
+name: 'indicadores'
+type: module
+description: 'Indicadores ABCD'
+core: 10.x
+package: 'Universidade de São Paulo'
