@@ -1,0 +1,6 @@
+indicadores.index:
+  path: '/indicadores/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\IndicadoresController::pdf'
+  requirements:
+    _permission: 'access content'
