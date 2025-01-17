@@ -4,3 +4,10 @@ indicadores.index:
     _controller: '\Drupal\indicadores\Controller\IndicadoresController::pdf'
   requirements:
     _permission: 'access content'
+
+indicadores.capacitacao:
+  path: '/indicadores/capacitacao/{submission_id}'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao'
+  requirements:
+    _permission: 'access content'
