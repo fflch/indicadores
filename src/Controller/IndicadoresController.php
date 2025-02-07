@@ -3,7 +3,10 @@
 namespace Drupal\indicadores\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
+use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
+
+use Shuchkin\SimpleXLSXGen;
 
 class IndicadoresController extends ControllerBase {
   public function pdf(){
@@ -13,53 +16,53 @@ class IndicadoresController extends ControllerBase {
     return $build;
   }
 
-  public function capacitacao($submission_id){
+  public function capacitacao($webform_id){
+    $webform = Webform::load($webform_id);
 
-    $submission = \Drupal\webform\Entity\WebformSubmission::load($submission_id);
-    $data = $submission->getData();
+    $capacitacoes = [
+      ['Unidade', 'Tipo de Capacitação', 'Nome', 'Total de Ações' ],
+    ];
+
+    if ($webform) {
+      // Load all submissions for the webform.
+      $submissions = \Drupal::entityTypeManager()
+        ->getStorage('webform_submission')
+        ->loadByProperties(['webform_id' => $webform_id]);
     
-    $unidade = $submission->getOwner()->getDisplayName();
+      foreach ($submissions as $submission) {
+        if ($submission->isDraft()) continue;
 
-    $linhas = '';
-    foreach($data['formulario_coleta_de_dados'] as $linha){
-      $linhas .= "    
-      <tr>
-        <td>{$unidade}</td>
-        <td>{$linha['tipo']}</td>
-        <td>{$linha['nome']}</td>
-        <td>{$linha['publico']}</td>
-        <td>{$linha['carga_horaria']}</td>
-        <td>{$linha['participantes']}</td>
-        <td>{$linha['data_inicio']}</td>
-        <td>{$linha['data_termino']}</td>
-        <td>{$linha['ministrante']}</td>
-      </tr>";
+        $data = $submission->getData();
+        $unidade = $submission->getOwner()->getDisplayName();
+        $quantidade = 0;
+        $quantidade_participantes = 0;
+        $primeira_iteracao = TRUE;
+
+        //FAZER UM FOREACH PARA CALCULAR TODOS OS DADOS AQUI, PRIMEIRO
+
+        foreach ($data['formulario_coleta_de_dados'] as $coleta) {
+          if($primeira_iteracao) {
+            $linha = [$unidade, $coleta['tipo'], $coleta['nome'], ''];
+            $primeira_iteracao = FALSE;
+          }
+          else {
+            $linha = [ '', $coleta['tipo'], $coleta['nome']];
+          }
+          array_push($capacitacoes, $linha);
+          $quantidade++;
+          $quantidade_participantes += $coleta['participantes'];
+        }
+
+        \Drupal::logger('custom_module')->notice(print_r($data, TRUE));
+      }
+    } else {
+      \Drupal::logger('custom_module')->error('Webform not found.');
     }
 
-    $table = "
-    <table>
-      <thead>
-        <tr>
-          <th>Unidade</th>
-          <th>Tipo de Capacitação</th>
-          <th>Nome</th>
-          <th>Público</th>
-          <th>Carga Horária</th>
-          <th>Nº de Participantes/Alunos Matriculados</th>
-          <th>Data de Início</th>
-          <th>Data de Término</th>
-          <th>Ministrante</th>
-        </tr>
-      </thead>
-      <tbody>
-        {$linhas}
-      </tbody>
-      </table>
-    ";
-    $build = [
-      '#markup' => $this->t($table),
-    ];
-    return $build;
+    $xlsx = SimpleXLSXGen::fromArray( $capacitacoes )
+                  ->mergeCells('A20:B20'); // TENTAR FAZER ISSO FUNCIONAR PARA A UNIDADE 
+    $xlsx->downloadAs('capacitacoes-'.date('Y-m-d-H-i').'.xlsx');
+
   }
 
 }

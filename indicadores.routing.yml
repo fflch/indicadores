@@ -6,7 +6,7 @@ indicadores.index:
     _permission: 'access content'
 
 indicadores.capacitacao:
-  path: '/indicadores/capacitacao/{submission_id}'
+  path: '/indicadores/capacitacao/{webform_id}'
   defaults:
     _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao'
   requirements:
