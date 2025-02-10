@@ -1,5 +1,7 @@
 <?php
 
+// http://0.0.0.0:8000/indicadores/capacitacao/indicadores_abcd
+
 namespace Drupal\indicadores\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
@@ -20,37 +22,43 @@ class IndicadoresController extends ControllerBase {
     $webform = Webform::load($webform_id);
 
     $capacitacoes = [
-      ['Unidade', 'Tipo de Capacitação', 'Nome', 'Total de Ações' ],
+        ['Unidade', 'Tipo de Capacitação', 'Nome', 'Total de Ações', 'Público', 'Carga Horária', 'Nº Participantes', 'Total de Participantes', 'Data Início', 'Data Término', 'Ministrante' ],
     ];
 
-    if ($webform) {
-      // Load all submissions for the webform.
+    if($webform){
       $submissions = \Drupal::entityTypeManager()
         ->getStorage('webform_submission')
         ->loadByProperties(['webform_id' => $webform_id]);
     
-      foreach ($submissions as $submission) {
+      foreach($submissions as $submission){
         if ($submission->isDraft()) continue;
 
         $data = $submission->getData();
-        $unidade = $submission->getOwner()->getDisplayName();
-        $quantidade = 0;
+        $unidade = strtoupper($submission->getOwner()->getDisplayName());
+
+        $quantidade_capacitacoes = 0;
         $quantidade_participantes = 0;
+
+        foreach($data['formulario_coleta_de_dados'] as $coleta){
+            $quantidade_capacitacoes++;
+            $quantidade_participantes += $coleta['participantes'];
+        }
+
         $primeira_iteracao = TRUE;
 
-        //FAZER UM FOREACH PARA CALCULAR TODOS OS DADOS AQUI, PRIMEIRO
-
-        foreach ($data['formulario_coleta_de_dados'] as $coleta) {
+        foreach($data['formulario_coleta_de_dados'] as $coleta){
           if($primeira_iteracao) {
-            $linha = [$unidade, $coleta['tipo'], $coleta['nome'], ''];
+            $publico = ($coleta['publico'] == '1') ? 'Comunidade USP' : 'Outras Instituições';
+
+            $linha = [$unidade, $coleta['tipo'], $coleta['nome'], $quantidade_capacitacoes, $publico, $coleta['carga_horaria'], $coleta['participantes'], $quantidade_participantes, $coleta['data_inicio'], $coleta['data_termino'], $coleta['ministrante']];
+
             $primeira_iteracao = FALSE;
           }
           else {
-            $linha = [ '', $coleta['tipo'], $coleta['nome']];
+            $linha = ['', $coleta['tipo'], $coleta['nome'], '', $publico, $coleta['carga_horaria'], $coleta['participantes'], '', $coleta['data_inicio'], $coleta['data_termino'], $coleta['ministrante']];
           }
+
           array_push($capacitacoes, $linha);
-          $quantidade++;
-          $quantidade_participantes += $coleta['participantes'];
         }
 
         \Drupal::logger('custom_module')->notice(print_r($data, TRUE));
@@ -59,8 +67,8 @@ class IndicadoresController extends ControllerBase {
       \Drupal::logger('custom_module')->error('Webform not found.');
     }
 
-    $xlsx = SimpleXLSXGen::fromArray( $capacitacoes )
-                  ->mergeCells('A20:B20'); // TENTAR FAZER ISSO FUNCIONAR PARA A UNIDADE 
+    $xlsx = SimpleXLSXGen::fromArray( $capacitacoes );
+
     $xlsx->downloadAs('capacitacoes-'.date('Y-m-d-H-i').'.xlsx');
 
   }
