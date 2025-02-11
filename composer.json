@@ -1,0 +1,11 @@
+{
+    "name": "fflch/indicadores",
+    "description": "Indicadores ABCD",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Thiago Gomes Verissimo",
+            "email": "verissimotgv@gmail.com"
+        }
+    ]
+}
