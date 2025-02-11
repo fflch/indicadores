@@ -3,11 +3,11 @@ indicadores.index:
   defaults:
     _controller: '\Drupal\indicadores\Controller\IndicadoresController::pdf'
   requirements:
-    _permission: 'access content'
+    _permission: 'access administration pages'
 
 indicadores.capacitacao:
   path: '/indicadores/capacitacao/{webform_id}'
   defaults:
     _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao'
   requirements:
-    _permission: 'access content'
+    _permission: 'access administration pages'
