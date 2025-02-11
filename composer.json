@@ -2,6 +2,7 @@
     "name": "fflch/indicadores",
     "description": "Indicadores ABCD",
     "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Thiago Gomes Verissimo",
