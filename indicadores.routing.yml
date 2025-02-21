@@ -11,3 +11,10 @@ indicadores.capacitacao:
     _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao'
   requirements:
     _permission: 'access administration pages'
+
+indicadores.capacitacao_form:
+  path: '/indicadores/capacitacao'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao_form'
+  requirements:
+    _permission: 'access administration pages'
