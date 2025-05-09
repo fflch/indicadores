@@ -1,20 +1,43 @@
-indicadores.index:
-  path: '/indicadores/pdf'
+indicadores.relatorio_form:
+  path: '/indicadores/relatorios'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\IndicadoresController::pdf'
+    _controller: '\Drupal\indicadores\Controller\RelatorioController::form'
   requirements:
     _permission: 'access administration pages'
 
-indicadores.capacitacao:
-  path: '/indicadores/capacitacao/{webform_id}'
+indicadores.relatorios_excel:
+  path: '/indicadores/relatorios/{webform_id}/excel'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao'
+    _controller: '\Drupal\indicadores\Controller\RelatorioController::excel'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.relatorios_pdf:
+  path: '/indicadores/relatorios/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\RelatorioController::pdf'
   requirements:
     _permission: 'access administration pages'
 
 indicadores.capacitacao_form:
   path: '/indicadores/capacitacao'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\IndicadoresController::capacitacao_form'
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::form'
   requirements:
     _permission: 'access administration pages'
+    
+indicadores.capacitacao_excel:
+  path: '/indicadores/capacitacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.capacitacao_pdf:
+  path: '/indicadores/capacitacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+
