@@ -12,12 +12,20 @@ use Drupal\indicadores\Utils\Util;
 
 class RelatorioController extends ControllerBase {
     public function form(){
-        $str = Util::criaLista('indicadores/relatorios');
+        $str = Util::createList('indicadores/relatorios');
 
         $build = [
             '#markup' => $this->t($str),
             ];
         return $build;
+    }
+
+    public function excel($webform_id){
+        $webform = Webform::load($webform_id);
+
+        $xlsx = SimpleXLSXGen::fromArray( [1, 2, 3] );
+
+        $xlsx->downloadAs($webform->label().'.xlsx');
     }
 
     public function pdf(){
@@ -27,20 +35,8 @@ class RelatorioController extends ControllerBase {
 
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
-
-        // Render the HTML as PDF
         $dompdf->render();
-
-        // Output the generated PDF to Browser
         $dompdf->stream();
-    }
-
-    public function excel($webform_id){
-        $webform = Webform::load($webform_id);
-
-        $xlsx = SimpleXLSXGen::fromArray( [1, 2, 3] );
-
-        $xlsx->downloadAs($webform->label().'.xlsx');
     }
 
     private function createTable(){
