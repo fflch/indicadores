@@ -7,18 +7,27 @@ use Drupal\webform\Entity\Webform;
 Class Util {
     public static function criaLista($url){
         $webforms = Webform::loadMultiple();
-
-
         
-        $str = '<ul>';
+        $formularios = [];
 
         foreach($webforms as $webform){
-            $id = $webform->id();
-            $label = $webform->label();
+            $formularios[] = [
+                'id' => $webform->id(),
+                'label' => $webform->label(),
+            ];
+        }
+
+        usort($formularios, function($a, $b){
+            return strcmp($a['label'], $b['label']);
+        });
+
+        $str = '<ul>';
+        foreach($formularios as $formulario){
+            $id = $formulario['id'];
+            $label = $formulario['label'];
             
             $str .= "<li>$label <a href='/$url/$id/pdf'>pdf</a> <a href='/$url/$id/excel'>excel</a></li>";
         }
-
         $str .= '</ul>';
 
         return $str;
