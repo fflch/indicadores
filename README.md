@@ -1,0 +1,1 @@
+Esse módulo fornece uma coleção de relatórios em pdf e excel utilizados na ABCD USP. Os relatórios estão todos disponíveis no rota: /indicadores

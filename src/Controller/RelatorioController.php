@@ -11,7 +11,7 @@ use Dompdf\Dompdf;
 use Drupal\indicadores\Utils\Util;
 
 class RelatorioController extends ControllerBase {
-    public function form(){
+    public function index(){
         $str = Util::createList('indicadores/relatorios');
 
         $build = [
@@ -31,7 +31,7 @@ class RelatorioController extends ControllerBase {
     public function pdf(){
         // instantiate and use the dompdf class
         $dompdf = new Dompdf();
-        $dompdf->loadHtml('hello world');
+        $dompdf->loadHtml('Em construção');
 
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');

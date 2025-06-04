@@ -1,7 +1,16 @@
-indicadores.relatorio_form:
+indicadores.index:
+  path: '/indicadores'
+  defaults:
+    _title: 'Relatórios'
+    _controller: '\Drupal\indicadores\Controller\IndexController::index'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.relatorios:
   path: '/indicadores/relatorios'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\RelatorioController::form'
+    _title: 'Relatórios Gerais'
+    _controller: '\Drupal\indicadores\Controller\RelatorioController::index'
   requirements:
     _permission: 'access administration pages'
 
@@ -19,10 +28,11 @@ indicadores.relatorios_pdf:
   requirements:
     _permission: 'access administration pages'
 
-indicadores.capacitacao_form:
+indicadores.capacitacao:
   path: '/indicadores/capacitacao'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::form'
+    _title: 'Relatórios de Capacitações'
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::index'
   requirements:
     _permission: 'access administration pages'
     

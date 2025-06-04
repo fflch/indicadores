@@ -9,9 +9,10 @@ use Drupal\webform\Entity\WebformSubmission;
 use Shuchkin\SimpleXLSXGen;
 use Dompdf\Dompdf;
 use Drupal\indicadores\Utils\Util;
+use Drupal\indicadores\Relatorios\Capacitacao;
 
 class CapacitacaoController extends ControllerBase {
-    public function form(){
+    public function index(){
         $str = Util::createList('indicadores/capacitacao');
 
         $build = [
@@ -23,18 +24,18 @@ class CapacitacaoController extends ControllerBase {
     public function excel($webform_id){
         $webform = Webform::load($webform_id);
         
-        $capacitacoes = Util::createExcelTable($webform);
+        $capacitacoes = Capacitacao::prepareData($webform);
 
         $xlsx = SimpleXLSXGen::fromArray( $capacitacoes );
 
-        $xlsx->downloadAs($webform->label().'.xlsx');
+        $xlsx->downloadAs('capacitações-'.$webform->label().'.xlsx');
     }
 
     public function pdf($webform_id){
         $webform = Webform::load($webform_id);
         
-        $dataArray = Util::createExcelTable($webform);
-        $html = Util::createHtmlTable($dataArray);
+        $dataArray = Capacitacao::prepareData($webform);
+        $html = Capacitacao::createHtmlTable($dataArray);
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
