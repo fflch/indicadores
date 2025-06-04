@@ -6,28 +6,7 @@ indicadores.index:
   requirements:
     _permission: 'access administration pages'
 
-indicadores.relatorios:
-  path: '/indicadores/relatorios'
-  defaults:
-    _title: 'Relatórios Gerais'
-    _controller: '\Drupal\indicadores\Controller\RelatorioController::index'
-  requirements:
-    _permission: 'access administration pages'
-
-indicadores.relatorios_excel:
-  path: '/indicadores/relatorios/{webform_id}/excel'
-  defaults:
-    _controller: '\Drupal\indicadores\Controller\RelatorioController::excel'
-  requirements:
-    _permission: 'access administration pages'
-    
-indicadores.relatorios_pdf:
-  path: '/indicadores/relatorios/{webform_id}/pdf'
-  defaults:
-    _controller: '\Drupal\indicadores\Controller\RelatorioController::pdf'
-  requirements:
-    _permission: 'access administration pages'
-
+## Início rotas para relatório de capacitação ##
 indicadores.capacitacao:
   path: '/indicadores/capacitacao'
   defaults:
@@ -47,6 +26,29 @@ indicadores.capacitacao_pdf:
   path: '/indicadores/capacitacao/{webform_id}/pdf'
   defaults:
     _controller: '\Drupal\indicadores\Controller\CapacitacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Dados Administrativos - Estrutura Organizacional ##
+indicadores.estrutura_organizacional:
+  path: '/indicadores/estrutura_organizacional'
+  defaults:
+    _title: 'Relatório Estrutura Organizacional'
+    _controller: '\Drupal\indicadores\Controller\EstruturaOrganizacionalController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.estrutura_organizacional_excel:
+  path: '/indicadores/estrutura_organizacional/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EstruturaOrganizacionalController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.estrutura_organizacional_pdf:
+  path: '/indicadores/estrutura_organizacional/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EstruturaOrganizacionalController::pdf'
   requirements:
     _permission: 'access administration pages'
 
