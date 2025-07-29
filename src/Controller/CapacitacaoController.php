@@ -13,6 +13,8 @@ use Drupal\indicadores\Relatorios\Capacitacao;
 
 class CapacitacaoController extends ControllerBase {
     public function index(){
+        // ADICIONAR O IF QUE FILTRA QUAIS WEBFORMS PEGAR AQUI
+        
         $str = Util::createList('indicadores/capacitacao');
 
         $build = [

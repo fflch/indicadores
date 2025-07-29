@@ -1,5 +1,5 @@
 indicadores.index:
-  path: '/indicadores'
+  path: '/relatorios'
   defaults:
     _title: 'Relatórios'
     _controller: '\Drupal\indicadores\Controller\IndexController::index'
