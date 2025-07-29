@@ -13,8 +13,6 @@ use Drupal\indicadores\Relatorios\EstruturaOrganizacional;
 
 class EstruturaOrganizacionalController extends ControllerBase {
     public function index(){
-        // ADICIONAR O IF QUE FILTRA QUAIS WEBFORMS PEGAR AQUI
-
         $str = Util::createList('indicadores/estrutura_organizacional');
 
         $build = [

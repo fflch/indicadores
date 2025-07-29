@@ -13,8 +13,15 @@ use Drupal\indicadores\Relatorios\Capacitacao;
 
 class CapacitacaoController extends ControllerBase {
     public function index(){
-        // ADICIONAR O IF QUE FILTRA QUAIS WEBFORMS PEGAR AQUI
-        
+        $webforms = Webform::loadMultiple();
+        $agencia_forms = [];
+
+        foreach ($webforms as $webform) {
+            if (str_starts_with($webform->id(), 'indicadores_abcd')) {
+                $agencia_forms[] = $webform;
+            }
+        }
+
         $str = Util::createList('indicadores/capacitacao');
 
         $build = [

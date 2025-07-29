@@ -1,5 +1,5 @@
 indicadores.index:
-  path: '/relatorios'
+  path: '/indicadores'
   defaults:
     _title: 'Relatórios'
     _controller: '\Drupal\indicadores\Controller\IndexController::index'
@@ -52,4 +52,15 @@ indicadores.estrutura_organizacional_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
 
