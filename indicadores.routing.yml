@@ -29,6 +29,30 @@ indicadores.capacitacao_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório dos Acervo das Bibliotecas da USP ##
+indicadores.acervo_bibliotecas:
+  path: '/indicadores/acervo_bibliotecas'
+  defaults:
+    _title: 'Relatório Acervo Bibliotecas USP'
+    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.acervo_bibliotecas_excel:
+  path: '/indicadores/acervo_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.acervo_bibliotecas_pdf:
+  path: '/indicadores/acervo_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+
 ## Início rotas para relatório de Dados Administrativos - Estrutura Organizacional ##
 indicadores.estrutura_organizacional:
   path: '/indicadores/estrutura_organizacional'

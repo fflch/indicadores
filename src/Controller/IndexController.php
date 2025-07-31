@@ -9,7 +9,7 @@ class IndexController extends ControllerBase {
         $str = '
             <ul>
                 <li><a href="/indicadores/capacitacao">Relatórios de Capacitações</a></li>  
-                <li><a href="/indicadores/XXXXX">Acervo das Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/acervo_bibliotecas">Acervo das Bibliotecas da USP</a></li>
                 <li><a href="/indicadores/XXXXX">Acervo de Fascículos de Periódicos e acklog de Catalogação</a></li>
                 <li><a href="/indicadores/XXXXX">Acessibilidade_1</a></li>
                 <li><a href="/indicadores/XXXXX">Acessibilidade_2</a></li>
