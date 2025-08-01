@@ -29,26 +29,26 @@ indicadores.capacitacao_pdf:
   requirements:
     _permission: 'access administration pages'
 
-## Início rotas para relatório dos Acervo das Bibliotecas da USP ##
-indicadores.acervo_bibliotecas:
-  path: '/indicadores/acervo_bibliotecas'
+## Início rotas para relatório dos Acervo de Fascículos e Backlog de Catalogação da USP ##
+indicadores.acervo_fasciculos_backlog:
+  path: '/indicadores/acervo_fasciculos_backlog'
   defaults:
-    _title: 'Relatório Acervo Bibliotecas USP'
-    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::index'
-  requirements:
-    _permission: 'access administration pages'
-    
-indicadores.acervo_bibliotecas_excel:
-  path: '/indicadores/acervo_bibliotecas/{webform_id}/excel'
-  defaults:
-    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::excel'
+    _title: 'Acervo de Fascículos de Periódicos e Backlog de Catalogação'
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::index'
   requirements:
     _permission: 'access administration pages'
 
-indicadores.acervo_bibliotecas_pdf:
-  path: '/indicadores/acervo_bibliotecas/{webform_id}/pdf'
+indicadores.acervo_fasciculos_backlog_excel:
+  path: '/indicadores/acervo_fasciculos_backlog/{webform_id}/excel'
   defaults:
-    _controller: '\Drupal\indicadores\Controller\AcervoBibliotecasController::pdf'
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.acervo_fasciculos_backlog_pdf:
+  path: '/indicadores/acervo_fasciculos_backlog/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::pdf'
   requirements:
     _permission: 'access administration pages'
 

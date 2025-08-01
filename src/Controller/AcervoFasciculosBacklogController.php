@@ -9,11 +9,11 @@ use Drupal\webform\Entity\WebformSubmission;
 use Shuchkin\SimpleXLSXGen;
 use Dompdf\Dompdf;
 use Drupal\indicadores\Utils\Util;
-use Drupal\indicadores\Relatorios\AcervoBibliotecas;
+use Drupal\indicadores\Relatorios\AcervoFasciculosBacklog;
 
-class AcervoBibliotecasController extends ControllerBase {
+class AcervoFasciculosBacklogController extends ControllerBase {
     public function index(){
-        $str = Util::createList('indicadores/acervo_bibliotecas');
+        $str = Util::createList('indicadores/acervo_fasciculos_backlog');
 
         $build = [
             '#markup' => $this->t($str),
@@ -24,16 +24,16 @@ class AcervoBibliotecasController extends ControllerBase {
     public function excel($webform_id){
         $webform = Webform::load($webform_id);
 
-        $xlsx = SimpleXLSXGen::fromArray(AcervoBibliotecas::prepareData($webform));
+        $xlsx = SimpleXLSXGen::fromArray(AcervoFasciculosBacklog::prepareData($webform));
 
-        $xlsx->downloadAs('acervo_bibliotecas-'.$webform->label().'.xlsx');
+        $xlsx->downloadAs('acervo_fasciculos_backlog-'.$webform->label().'.xlsx');
     }
 
     public function pdf($webform_id){
         $webform = Webform::load($webform_id);
         
-        $dataArray = AcervoBibliotecas::prepareData($webform);
-        $html = AcervoBibliotecas::createHtmlTable($dataArray);
+        $dataArray = AcervoFasciculosBacklog::prepareData($webform);
+        $html = AcervoFasciculosBacklog::createHtmlTable($dataArray);
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
