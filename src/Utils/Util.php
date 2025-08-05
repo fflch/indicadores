@@ -5,7 +5,6 @@ namespace Drupal\indicadores\Utils;
 use Drupal\webform\Entity\Webform;
 
 Class Util {
-
     /*
      * Gera uma lista em HTML de webforms filtrados com o prefixo 'indicadores_abcd',
      * ordenada por nome, com links para exportação em PDF e Excel.

@@ -76,9 +76,31 @@ indicadores.estrutura_organizacional_pdf:
   requirements:
     _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Geral e Física ##
+indicadores.acessibilidade_geral:
+  path: '/indicadores/acessibilidade_geral'
+  defaults:
+    _title: 'Relatório Acessibilidade nas Biblioteacs da USP'
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.acessibilidade_geral_excel:
+  path: '/indicadores/acessibilidade_geral/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::excel'
+  requirements:
+    _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+indicadores.acessibilidade_geral_pdf:
+  path: '/indicadores/acessibilidade_geral/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Arquitetônica ##
 
 ## Início rotas para relatório de ?????? ##
 
