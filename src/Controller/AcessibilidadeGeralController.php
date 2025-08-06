@@ -9,20 +9,11 @@ use Drupal\webform\Entity\WebformSubmission;
 use Shuchkin\SimpleXLSXGen;
 use Dompdf\Dompdf;
 use Drupal\indicadores\Utils\Util;
-use Drupal\indicadores\Relatorios\Capacitacao;
+use Drupal\indicadores\Relatorios\AcessibilidadeGeral;
 
-class CapacitacaoController extends ControllerBase {
+class AcessibilidadeGeralController extends ControllerBase {
     public function index(){
-        $webforms = Webform::loadMultiple();
-        $agencia_forms = [];
-
-        foreach ($webforms as $webform) {
-            if (str_starts_with($webform->id(), 'indicadores_abcd')) {
-                $agencia_forms[] = $webform;
-            }
-        }
-
-        $str = Util::createList('indicadores/capacitacao');
+        $str = Util::createList('indicadores/acessibilidade_geral');
 
         $build = [
             '#markup' => $this->t($str),
@@ -32,19 +23,17 @@ class CapacitacaoController extends ControllerBase {
 
     public function excel($webform_id){
         $webform = Webform::load($webform_id);
-        
-        $capacitacoes = Capacitacao::prepareData($webform);
 
-        $xlsx = SimpleXLSXGen::fromArray( $capacitacoes );
+        $xlsx = SimpleXLSXGen::fromArray(AcessibilidadeGeral::prepareData($webform));
 
-        $xlsx->downloadAs('capacitações-'.$webform->label().'.xlsx');
+        $xlsx->downloadAs('acessibilidade_geral-'.$webform->label().'.xlsx');
     }
 
     public function pdf($webform_id){
         $webform = Webform::load($webform_id);
         
-        $dataArray = Capacitacao::prepareData($webform);
-        $html = Capacitacao::createHtmlTable($dataArray);
+        $dataArray = AcessibilidadeGeral::prepareData($webform);
+        $html = AcessibilidadeGeral::createHtmlTable($dataArray);
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);

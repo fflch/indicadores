@@ -8,11 +8,36 @@ class IndexController extends ControllerBase {
     public function index(){
         $str = '
             <ul>
-                <li><a href="/indicadores/capacitacao">Capacitações</a></li>
+                <li><a href="/indicadores/capacitacao">Relatórios de Capacitações</a></li>  
+                <li><a href="/indicadores/XXXXX">Acervo das Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/acervo_fasciculos_backlog">Acervo de Fascículos de Periódicos e Backlog de Catalogação</a></li>
+                <li><a href="/indicadores/acessibilidade_geral">Acessibilidade Nas Bibliotecas da USP - Geral e Física</a></li>
+                <li><a href="/indicadores/XXXXX">Acessibilidade Nas Bibliotecas da USP - Arquitetônica</a></li>
+                <li><a href="/indicadores/XXXXX">Acessibilidade_3</a></li>
+                <li><a href="/indicadores/XXXXX">Aquisição de Livros e de Outros Tipos de Materiais e Títulos Correntes e Periódicos</a></li>
+                <li><a href="/indicadores/XXXXX">Assistência ao Usuário e Normalização Técnica</a></li>
+                <li><a href="/indicadores/XXXXX">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/XXXXX">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP - Biblioteca Solicitante</a></li>
+                <li><a href="/indicadores/XXXXX">Bases de Dados mantidas pelas Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/XXXXX">Capacitação de Usuários pelas Bibliotecas da USP - Completa</a></li>
+                <li><a href="/indicadores/XXXXX">Capacitação de Usuários pelas Bibliotecas da USP - Número de Participantes por Tipo de Capacitação</a></li>
+                <li><a href="/indicadores/XXXXX">Capacitação de Usuários pelas Bibliotecas da USP - Resumida</a></li>
+                <li><a href="/indicadores/XXXXX">Circulação do Acervo das Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/XXXXX">Consultas ao Acervo e Empréstimo entre Bibliotecas como Biblioteca Solicitante</a></li>
                 <li><a href="/indicadores/estrutura_organizacional">Dados Administrativos - Estrutura Organizacional</a></li>
-                <li><a href="/indicadores/XXX">Dados Administrativos - Informações Complementares</a></li>
-                <li><a href="/indicadores/XXX">Dados Administrativos - Horário de funcionamento das bibliotecas</a></li>
-                <li><a href="/indicadores/XXX">Dados Administrativos - Números de assentos para usuários e área física</a></li>
+                <li><a href="/indicadores/XXXXX">Dados Administrativos - Horário de Funcionamento das Bibliotecas</a></li>
+                <li><a href="/indicadores/XXXXX">Dados Administrativos - Informações Complementares</a></li>
+                <li><a href="/indicadores/XXXXX">Dados Administrativos - Número de Assentos para Usuários e Área Física</a></li>
+                <li><a href="/indicadores/XXXXX">Dados Administrativos - Recursos Humanos das Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/XXXXX">Dissertações e Teses Defendidas na USP e Cadastradas no DEDALUS</a></li>
+                <li><a href="/indicadores/XXXXX">Equipamentos de Informática nas Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/XXXXX">Eventos Promovidos pelas Bibliotecas e com Participação das Bibliotecas</a></li>
+                <li><a href="/indicadores/XXXXX">Frequência às Bibliotecas da USP, distribuída por Unidade</a></li>
+                <li><a href="/indicadores/XXXXX">Participação das Equipes das Bibliotecas em Ações de Capacitação</a></li>
+                <li><a href="/indicadores/XXXXX">Projetos das Bibliotecas USP</a></li>
+                <li><a href="/indicadores/XXXXX">Publicações Editadas pelas Bibliotecas</a></li>
+                <li><a href="/indicadores/XXXXX">Publicações Oficiais Editadas pelas Unidades com a Participação das Bibliotecas</a></li>
+                <li><a href="/indicadores/XXXXX">Serviços pela Internet e Rede sem Fio nas Bibliotecas da USP</a></li>
             </ul>';
 
         return [ '#markup' => $this->t($str)];

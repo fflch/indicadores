@@ -29,6 +29,30 @@ indicadores.capacitacao_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório dos Acervo de Fascículos e Backlog de Catalogação da USP ##
+indicadores.acervo_fasciculos_backlog:
+  path: '/indicadores/acervo_fasciculos_backlog'
+  defaults:
+    _title: 'Acervo de Fascículos de Periódicos e Backlog de Catalogação'
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::index'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.acervo_fasciculos_backlog_excel:
+  path: '/indicadores/acervo_fasciculos_backlog/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.acervo_fasciculos_backlog_pdf:
+  path: '/indicadores/acervo_fasciculos_backlog/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcervoFasciculosBacklogController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+
 ## Início rotas para relatório de Dados Administrativos - Estrutura Organizacional ##
 indicadores.estrutura_organizacional:
   path: '/indicadores/estrutura_organizacional'
@@ -52,4 +76,37 @@ indicadores.estrutura_organizacional_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Geral e Física ##
+indicadores.acessibilidade_geral:
+  path: '/indicadores/acessibilidade_geral'
+  defaults:
+    _title: 'Relatório Acessibilidade nas Biblioteacs da USP'
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.acessibilidade_geral_excel:
+  path: '/indicadores/acessibilidade_geral/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.acessibilidade_geral_pdf:
+  path: '/indicadores/acessibilidade_geral/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Arquitetônica ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
+
+## Início rotas para relatório de ?????? ##
 
