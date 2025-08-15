@@ -23,9 +23,9 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += (int)$data['cadastrados_atualmente_periodicos'];
-            $total_materiais_nao_cadastrados += (int)$data['materiais_nao_cadastrados_periodicos'];
-            $total_backlog_catalogacao       += (int)$data['backlog_catalogacao'];
+            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
+            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
+            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
 
             $linha = [
                 $unidade, 
@@ -104,5 +104,10 @@ Class AcervoFasciculosBacklog {
         $html .= '</tbody></table>';
     
         return $html;
-    }    
+    } 
+    
+    
+    private static function toInt($value) {
+        return (int) preg_replace('/\D/', '', $value ?? '');
+    }
 }
