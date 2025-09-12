@@ -4,19 +4,18 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcessibilidadeArquitetonica {
+Class AcessibilidadeTecnologica {
 
     public static function prepareData($webform){
         $acessibilidade = [];
 
         $counterSim = [
-            'atendimentoAcessivel' => 0,
-            'mobiliarioAcessivel'  => 0,
-            'rampaDeAcesso'        => 0,
-            'sinalizacaoTatil'     => 0,
-            'sinalizacaoVisual'    => 0,
-            'sinalizacaoSonora'    => 0,
-            'ambientesAcessiveis'  => 0
+            'planoAquisicaoConteudoAcessivel' => 0,
+            'acervoAcessivel'                 => 0,
+            'sitesProgramasAcessiveis'        => 0,
+            'servicosBraille'                 => 0,
+            'leituraDeTela'                   => 0,
+            'tecladoVirtual'                  => 0
         ];
 
         $counterNao = $counterSim;
@@ -30,16 +29,26 @@ Class AcessibilidadeArquitetonica {
 
             $data = $submission->getData();
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
-    
-            $respostas = [
-                'atendimentoAcessivel' => $data['atendimentoAcessivel'],
-                'mobiliarioAcessivel'  => $data['mobiliarioAcessivel'],
-                'rampaDeAcesso'        => $data['rampaDeAcesso'],
-                'sinalizacaoTatil'     => $data['sinalizacaoTatil'],
-                'sinalizacaoVisual'    => $data['sinalizacaoVisual'],
-                'sinalizacaoSonora'    => $data['sinalizacaoSonora'],
-                'ambientesAcessiveis'  => $data['ambientesAcessiveis'],
-            ];
+
+            if ($data['teclado_virtual'] == 1) {
+                $respostas = [
+                    'planoAquisicaoConteudoAcessivel' => $data['plano_aquisicao_bibliografica_adaptada_seg_versao'],
+                    'acervoAcessivel'                 => $data['acervo_adaptado_seg_versao'],
+                    'sitesProgramasAcessiveis'        => $data['websites_apps_adaptados_seg_versao'],
+                    'servicosBraille'                 => $data['impressoras_braille_seg_versao'],
+                    'leituraDeTela'                   => $data['software_leitura_acessivel_seg_versao'],
+                    'tecladoVirtual'                  => 'Sim'
+                ];
+            } else {
+                $respostas = [
+                    'planoAquisicaoConteudoAcessivel' => $data['plano_aquisicao_bibliografica_adaptada_seg_versao'],
+                    'acervoAcessivel'                 => $data['acervo_adaptado_seg_versao'],
+                    'sitesProgramasAcessiveis'        => $data['websites_apps_adaptados_seg_versao'],
+                    'servicosBraille'                 => $data['impressoras_braille_seg_versao'],
+                    'leituraDeTela'                   => $data['software_leitura_acessivel_seg_versao'],
+                    'tecladoVirtual'                  => 'Não'
+                ];
+            }
 
             foreach($respostas as $chave => $valor) {
                 if($valor === 'Sim'){
@@ -95,17 +104,16 @@ Class AcessibilidadeArquitetonica {
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Acessibilidade</th>
-                    <th colspan="4">Acessibilidade Arquitetônica ou Física</th>
+                    <th colspan="3">Acessibilidade de Conteúdo</th>
+                    <th colspan="3">Acessibilidade de Tecnologia</th>
                 </tr>
                 <tr>
-                    <th>Espaço para atendimento acessível</th>
-                    <th>Mobiliário acessível</th>
-                    <th>Rampa de acesso com corrimão</th>
-                    <th>Sinalização Tátil</th>                    
-                    <th>Sinalização Visual</th>
-                    <th>Sinalização Sonora</th>
-                    <th>Ambientes acessíveis para a movimentação/deslocamento/circulação de pessoas com deficiência e mobilidade reduzida</th>
+                    <th>Plano de aquisição gradual de acervo bibliográfico dos conteúdos básicos em formato acessível</th>
+                    <th>Acervo em formato acessível para pessoas com deficiência visual (cegueira e baixa visão)</th>
+                    <th>Sítios, plataformas e programas acessíveis para que pessoas com deficiência naveguem e utilizem os serviços oferecidos com autonomia</th>
+                    <th>Serviços de impressão em Braille</th>                    
+                    <th>Leitores de tela para pessoas com deficiência visual (cegueira e baixa visão)</th>
+                    <th>Teclado virtual</th>
                 </tr>
             </thead>
             <tbody>';

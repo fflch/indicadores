@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
                 <li><a href="/indicadores/acervo_fasciculos_backlog">Acervo de Fascículos de Periódicos e Backlog de Catalogação</a></li>
                 <li><a href="/indicadores/acessibilidade_geral">Acessibilidade Nas Bibliotecas da USP - Geral e Física</a></li>
                 <li><a href="/indicadores/acessibilidade_arquitetonica">Acessibilidade Nas Bibliotecas da USP - Arquitetônica e Física</a></li>
-                <li><a href="/indicadores/acessibilidade_tecnologica">Acessibilidade de Conteúdo e de Tecnologia</a></li>
+                <li><a href="/indicadores/acessibilidade_tecnologica">Acessibilidade Nas Bibliotecas da USP - Conteúdo e Tecnologia</a></li>
                 <li><a href="/indicadores/XXXXX">Aquisição de Livros e de Outros Tipos de Materiais e Títulos Correntes e Periódicos</a></li>
                 <li><a href="/indicadores/XXXXX">Assistência ao Usuário e Normalização Técnica</a></li>
                 <li><a href="/indicadores/XXXXX">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP</a></li>
