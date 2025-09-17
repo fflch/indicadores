@@ -16,8 +16,8 @@ class IndexController extends ControllerBase {
                 <li><a href="/indicadores/acessibilidade_tecnologica">Acessibilidade Nas Bibliotecas da USP - Conteúdo e Tecnologia</a></li>
                 <li><a href="/indicadores/aquisicao">Aquisição de Livros e de Outros Tipos de Materiais e Títulos Correntes e Periódicos</a></li>
                 <li><a href="/indicadores/assistencia_normalizacao">Assistência ao Usuário e Normalização Técnica</a></li>
-                <li><a href="/indicadores/XXXXX">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP</a></li>
-                <li><a href="/indicadores/XXXXX">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP - Biblioteca Solicitante</a></li>
+                <li><a href="/indicadores/atendimento_comutacao">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/atendimento_comutacao_solicitante">Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP - Biblioteca Solicitante</a></li>
                 <li><a href="/indicadores/XXXXX">Bases de Dados mantidas pelas Bibliotecas da USP</a></li>
                 <li><a href="/indicadores/XXXXX">Capacitação de Usuários pelas Bibliotecas da USP - Completa</a></li>
                 <li><a href="/indicadores/XXXXX">Capacitação de Usuários pelas Bibliotecas da USP - Nº de Participantes por Tipo de Capacitação</a></li>

@@ -9,11 +9,11 @@ use Drupal\webform\Entity\WebformSubmission;
 use Shuchkin\SimpleXLSXGen;
 use Dompdf\Dompdf;
 use Drupal\indicadores\Utils\Util;
-use Drupal\indicadores\Relatorios\Aquisicao;
+use Drupal\indicadores\Relatorios\AtendimentoComutacaoSolicitante;
 
-class AquisicaoController extends ControllerBase {
+class AtendimentoComutacaoSolicitanteController extends ControllerBase {
     public function index(){
-        $str = Util::createList('indicadores/aquisicao');
+        $str = Util::createList('indicadores/atendimento_comutacao_solicitante');
 
         $build = [
             '#markup' => $this->t($str),
@@ -24,16 +24,16 @@ class AquisicaoController extends ControllerBase {
     public function excel($webform_id){
         $webform = Webform::load($webform_id);
 
-        $xlsx = SimpleXLSXGen::fromArray(Aquisicao::prepareData($webform));
+        $xlsx = SimpleXLSXGen::fromArray(AtendimentoComutacaoSolicitante::prepareData($webform));
 
-        $xlsx->downloadAs('aquisicao-'.$webform->label().'.xlsx');
+        $xlsx->downloadAs('atendimento-comutacao-solicitante-'.$webform->label().'.xlsx');
     }
 
     public function pdf($webform_id){
         $webform = Webform::load($webform_id);
         
-        $dataArray = Aquisicao::prepareData($webform);
-        $html = Aquisicao::createHtmlTable($dataArray);
+        $dataArray = AtendimentoComutacaoSolicitante::prepareData($webform);
+        $html = AtendimentoComutacaoSolicitante::createHtmlTable($dataArray);
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);

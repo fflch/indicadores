@@ -192,6 +192,52 @@ indicadores.assistencia_normalizacao_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP ##
+indicadores.atendimento_comutacao:
+  path: '/indicadores/atendimento_comutacao'
+  defaults:
+    _title: 'Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.atendimento_comutacao_excel:
+  path: '/indicadores/atendimento_comutacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.atendimento_comutacao_pdf:
+  path: '/indicadores/atendimento_comutacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP - como Biblioteca Solicitante ##
+indicadores.atendimento_comutacao_solicitante:
+  path: '/indicadores/atendimento_comutacao_solicitante'
+  defaults:
+    _title: 'Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.atendimento_comutacao_solicitante_excel:
+  path: '/indicadores/atendimento_comutacao_solicitante/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.atendimento_comutacao_solicitante_pdf:
+  path: '/indicadores/atendimento_comutacao_solicitante/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
