@@ -4,17 +4,20 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcervoFasciculosBacklog {
+Class Aquisicao {
     public static function prepareData($webform){
-        $acervo = [];
+        $aquisicao = [];
 
         $submissions = \Drupal::entityTypeManager()
             ->getStorage('webform_submission')
             ->loadByProperties(['webform_id' => $webform->id()]);
 
-        $total_materiais_cadastrados     = 0;
-        $total_materiais_nao_cadastrados = 0;
-        $total_backlog_catalogacao       = 0;
+        $total_compra            = 0;
+        $total_doacao            = 0;
+        $total_livros_compra     = 0;
+        $total_livros_doacao     = 0;
+        $total_periodicos_compra = 0;
+        $total_periodicos_doacao = 0;
 
         foreach($submissions as $submission){
             if ($submission->isDraft()) continue;
@@ -23,28 +26,41 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
-            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
-            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
+            $total_livros_compra     += self::toInt($data['livros_compra_seg_versao']);
+            $total_livros_doacao     += self::toInt($data['livros_doacao_seg_versao']);
+            $total_periodicos_compra += self::toInt($data['periodicos_compra_seg_versao']);
+            $total_periodicos_doacao += self::toInt($data['periodicos_doacao_seg_versao']);
+            
+            $total_compra_unidade = self::toInt($data['livros_compra_seg_versao']) + self::toInt($data['periodicos_compra_seg_versao']);
+            $total_doacao_unidade = self::toInt($data['livros_doacao_seg_versao']) + self::toInt($data['periodicos_doacao_seg_versao']);
 
             $linha = [
                 $unidade, 
-                $data['cadastrados_atualmente_periodicos'], 
-                $data['materiais_nao_cadastrados_periodicos'], 
-                $data['backlog_catalogacao']
+                $data['livros_compra_seg_versao'], 
+                $data['livros_doacao_seg_versao'], 
+                $data['periodicos_compra_seg_versao'],
+                $data['periodicos_doacao_seg_versao'],
+                $total_compra_unidade,
+                $total_doacao_unidade
             ];
 
-            array_push($acervo, $linha);
+            array_push($aquisicao, $linha);
         }
 
-        array_push($acervo, [
+        $total_compra = $total_livros_compra + $total_periodicos_compra;
+        $total_doacao = $total_livros_doacao + $total_periodicos_doacao;
+
+        array_push($aquisicao, [
             'TOTAL',
-            $total_materiais_cadastrados,
-            $total_materiais_nao_cadastrados,
-            $total_backlog_catalogacao
+            $total_livros_compra,
+            $total_livros_doacao,
+            $total_periodicos_compra,
+            $total_periodicos_doacao,
+            $total_compra,
+            $total_doacao
         ]);
         
-        return $acervo;
+        return $aquisicao;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -77,17 +93,22 @@ Class AcervoFasciculosBacklog {
             }
         </style>
     
-        <h2>Acervo de Fascículos de Periódicos e Backlog de Catalogação</h2>
+        <h2>Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos</h2>
         <table>
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Periódicos (Fascículos)</th>
-                    <th rowspan="2" style="width: 30%;">Backlog Catalogação - Materiais não Cadastrados no DEDALUS (livros, teses, multimeios e outros tipos)</th>
+                    <th colspan="2">Livros e Outros Tipos de Materiais</th>
+                    <th colspan="2">Periódicos - Títulos Correntes</th>
+                    <th colspan="2">Total</th>
                 </tr>
                 <tr>
-                    <th>Materiais cadastrados no DEDALUS até a presente data</th>
-                    <th>Materiais não Cadastrados no DEDALUS</th>
+                    <th>Compra</th>
+                    <th>Doação</th>
+                    <th>Compra</th>
+                    <th>Doação</th>
+                    <th>Compra</th>
+                    <th>Doação</th>
                 </tr>
             </thead>
             <tbody>';

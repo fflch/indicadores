@@ -146,6 +146,52 @@ indicadores.acessibilidade_tecnologica_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos ##
+indicadores.aquisicao:
+  path: '/indicadores/aquisicao'
+  defaults:
+    _title: 'Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos'
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.aquisicao_excel:
+  path: '/indicadores/aquisicao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.aquisicao_pdf:
+  path: '/indicadores/aquisicao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Assistência ao Usuário e Normalização Técnica ##
+indicadores.assistencia_normalizacao:
+  path: '/indicadores/assistencia_normalizacao'
+  defaults:
+    _title: 'Assistência ao Usuário e Normalização Técnica'
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.assistencia_normalizacao_excel:
+  path: '/indicadores/assistencia_normalizacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.assistencia_normalizacao_pdf:
+  path: '/indicadores/assistencia_normalizacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
@@ -168,8 +214,6 @@ indicadores.internet_redes_pdf:
     _controller: '\Drupal\indicadores\Controller\InternetRedesController::pdf'
   requirements:
     _permission: 'access administration pages'
-
-## Início rotas para relatório de ?????? ##
 
 ## Início rotas para relatório de ?????? ##
 
