@@ -21,9 +21,9 @@ Class Capacitacao {
             $data = $submission->getData();
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $quantidade_capacitacoes = 0;
+            $quantidade_capacitacoes  = 0;
             $quantidade_participantes = 0;
-            $quantidade_horas = 0;
+            $quantidade_horas         = 0;
 
             foreach($data['formulario_coleta_de_dados'] as $coleta){
                 $quantidade_capacitacoes++;
