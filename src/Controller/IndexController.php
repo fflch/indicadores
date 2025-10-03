@@ -27,7 +27,7 @@ class IndexController extends ControllerBase {
                 <li><a href="/indicadores/XXXXX">Dados Administrativos - Horário de Funcionamento das Bibliotecas</a></li>
                 <li><a href="/indicadores/XXXXX">Dados Administrativos - Informações Complementares</a></li>
                 <li><a href="/indicadores/administrativo_area">Dados Administrativos - Número de Assentos para Usuários e Área Física</a></li>
-                <li><a href="/indicadores/XXXXX">Dados Administrativos - Recursos Humanos das Bibliotecas da USP</a></li>
+                <li><a href="/indicadores/administrativo_rh">Dados Administrativos - Recursos Humanos das Bibliotecas da USP</a></li>
                 <li><a href="/indicadores/XXXXX">Dissertações e Teses Defendidas na USP e Cadastradas no DEDALUS</a></li>
                 <li><a href="/indicadores/XXXXX">Equipamentos de Informática nas Bibliotecas da USP</a></li>
                 <li><a href="/indicadores/XXXXX">Eventos Promovidos pelas Bibliotecas e com Participação das Bibliotecas</a></li>
