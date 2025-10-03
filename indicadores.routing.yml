@@ -306,6 +306,29 @@ indicadores.atendimento_comutacao_solicitante_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Dados Administrativos - Número de Assentos para Usuários e Área Fisica ##
+indicadores.administrativo_area:
+  path: '/indicadores/administrativo_area'
+  defaults:
+    _title: 'Dados Administrativos - Número de Assentos para Usuários e Área Fisica'
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.administrativo_area_excel:
+  path: '/indicadores/administrativo_area/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.administrativo_area_pdf:
+  path: '/indicadores/administrativo_area/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
