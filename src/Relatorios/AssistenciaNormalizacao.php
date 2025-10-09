@@ -4,17 +4,17 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcervoFasciculosBacklog {
+Class AssistenciaNormalizacao {
     public static function prepareData($webform){
-        $acervo = [];
+        $assistencia_normalizacao = [];
 
         $submissions = \Drupal::entityTypeManager()
             ->getStorage('webform_submission')
             ->loadByProperties(['webform_id' => $webform->id()]);
 
-        $total_materiais_cadastrados     = 0;
-        $total_materiais_nao_cadastrados = 0;
-        $total_backlog_catalogacao       = 0;
+        $total_assistencias             = 0;
+        $total_normalizacao_documento   = 0;
+        $total_normalizacao_referencias = 0;
 
         foreach($submissions as $submission){
             if ($submission->isDraft()) continue;
@@ -23,28 +23,28 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
-            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
-            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
+            $total_assistencias             += self::toInt($data['assistencias_efetuadas']);
+            $total_normalizacao_documento   += self::toInt($data['documento_inteiro']);
+            $total_normalizacao_referencias += self::toInt($data['referencias_bibliograficas']);
 
             $linha = [
                 $unidade, 
-                $data['cadastrados_atualmente_periodicos'], 
-                $data['materiais_nao_cadastrados_periodicos'], 
-                $data['backlog_catalogacao']
+                $data['assistencias_efetuadas'], 
+                $data['documento_inteiro'], 
+                $data['referencias_bibliograficas'],
             ];
 
-            array_push($acervo, $linha);
+            array_push($assistencia_normalizacao, $linha);
         }
 
-        array_push($acervo, [
+        array_push($assistencia_normalizacao, [
             'TOTAL',
-            $total_materiais_cadastrados,
-            $total_materiais_nao_cadastrados,
-            $total_backlog_catalogacao
+            $total_assistencias,
+            $total_normalizacao_documento,
+            $total_normalizacao_referencias,
         ]);
         
-        return $acervo;
+        return $assistencia_normalizacao;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -77,17 +77,17 @@ Class AcervoFasciculosBacklog {
             }
         </style>
     
-        <h2>Acervo de Fascículos de Periódicos e Backlog de Catalogação</h2>
+        <h2>Assistência ao Usuário e Normalização Técnica</h2>
         <table>
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Periódicos (Fascículos)</th>
-                    <th rowspan="2" style="width: 30%;">Backlog Catalogação - Materiais não Cadastrados no DEDALUS (livros, teses, multimeios e outros tipos)</th>
+                    <th rowspan="2">Número de Assistências Efetuadas</th>
+                    <th colspan="2">Normalização Técnica</th>
                 </tr>
                 <tr>
-                    <th>Materiais cadastrados no DEDALUS até a presente data</th>
-                    <th>Materiais não Cadastrados no DEDALUS</th>
+                    <th>Documento como um todo</th>
+                    <th>Referências Bibliográficas</th>
                 </tr>
             </thead>
             <tbody>';

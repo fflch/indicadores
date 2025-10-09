@@ -6,29 +6,6 @@ indicadores.index:
   requirements:
     _permission: 'access administration pages'
 
-## Início rotas para relatório de capacitação ##
-indicadores.capacitacao:
-  path: '/indicadores/capacitacao'
-  defaults:
-    _title: 'Relatórios de Capacitações'
-    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::index'
-  requirements:
-    _permission: 'access administration pages'
-    
-indicadores.capacitacao_excel:
-  path: '/indicadores/capacitacao/{webform_id}/excel'
-  defaults:
-    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::excel'
-  requirements:
-    _permission: 'access administration pages'
-
-indicadores.capacitacao_pdf:
-  path: '/indicadores/capacitacao/{webform_id}/pdf'
-  defaults:
-    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::pdf'
-  requirements:
-    _permission: 'access administration pages'
-
 ## Início rotas para relatório dos Acervo de Fascículos e Backlog de Catalogação da USP ##
 indicadores.acervo_fasciculos_backlog:
   path: '/indicadores/acervo_fasciculos_backlog'
@@ -52,6 +29,97 @@ indicadores.acervo_fasciculos_backlog_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de capacitação ##
+indicadores.capacitacao:
+  path: '/indicadores/capacitacao'
+  defaults:
+    _title: 'Relatórios de Capacitações'
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.capacitacao_excel:
+  path: '/indicadores/capacitacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.capacitacao_pdf:
+  path: '/indicadores/capacitacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Capacitação de Usuários pelas Bibliotecas da USP - Nº de Participantes ##
+indicadores.capacitacao_participantes:
+  path: '/indicadores/capacitacao_participantes'
+  defaults:
+    _title: 'Capacitação de Usuários pelas Bibliotecas da USP - Nº de Participantes'
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoParticipantesController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.capacitacao_participantes_excel:
+  path: '/indicadores/capacitacao_participantes/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoParticipantesController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.capacitacao_participantes_pdf:
+  path: '/indicadores/capacitacao_participantes/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoParticipantesController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Capacitação de Usuários pelas Bibliotecas da USP - Resumida ##
+indicadores.capacitacao_resumo:
+  path: '/indicadores/capacitacao_resumo'
+  defaults:
+    _title: 'Capacitação de Usuários pelas Bibliotecas da USP - Resumida'
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoResumoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.capacitacao_resumo_excel:
+  path: '/indicadores/capacitacao_resumo/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoResumoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.capacitacao_resumo_pdf:
+  path: '/indicadores/capacitacao_resumo/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\CapacitacaoResumoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Consultas ao Acervo e Empréstimo entre Bibliotecas como Biblioteca Solicitante ##
+indicadores.consultas_entre_bibliotecas:
+  path: '/indicadores/consultas_entre_bibliotecas'
+  defaults:
+    _title: 'Consultas ao Acervo e Empréstimo entre Bibliotecas como Biblioteca Solicitante'
+    _controller: '\Drupal\indicadores\Controller\ConsultaEntreBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.consultas_entre_bibliotecas_excel:
+  path: '/indicadores/consultas_entre_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ConsultaEntreBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.consultas_entre_bibliotecas_pdf:
+  path: '/indicadores/consultas_entre_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ConsultaEntreBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
 
 ## Início rotas para relatório de Dados Administrativos - Estrutura Organizacional ##
 indicadores.estrutura_organizacional:
@@ -80,7 +148,7 @@ indicadores.estrutura_organizacional_pdf:
 indicadores.acessibilidade_geral:
   path: '/indicadores/acessibilidade_geral'
   defaults:
-    _title: 'Relatório Acessibilidade nas Biblioteacs da USP'
+    _title: 'Relatório Acessibilidade nas Bibliotecas da USP'
     _controller: '\Drupal\indicadores\Controller\AcessibilidadeGeralController::index'
   requirements:
     _permission: 'access administration pages'
@@ -100,13 +168,209 @@ indicadores.acessibilidade_geral_pdf:
     _permission: 'access administration pages'
 
 
-## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Arquitetônica ##
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - Arquitetônica e Física ##
+indicadores.acessibilidade_arquitetonica:
+  path: '/indicadores/acessibilidade_arquitetonica'
+  defaults:
+    _title: 'Relatório de Acessibilidade Arquitetônica nas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeArquitetonicaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.acessibilidade_arquitetonica_excel:
+  path: '/indicadores/acessibilidade_arquitetonica/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeArquitetonicaController::excel'
+  requirements:
+    _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+indicadores.acessibilidade_arquitetonica_pdf:
+  path: '/indicadores/acessibilidade_arquitetonica/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeArquitetonicaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+## Início rotas para relatório de Acessibilidade nas Bibliotecas da USP - De Conteúdo e de Tecnologia ##
+indicadores.acessibilidade_tecnologica:
+  path: '/indicadores/acessibilidade_tecnologica'
+  defaults:
+    _title: 'Relatório Acessibilidade de Conteúdo e de Tecnologia nas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeTecnologicaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.acessibilidade_tecnologica_excel:
+  path: '/indicadores/acessibilidade_tecnologica/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeTecnologicaController::excel'
+  requirements:
+    _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+indicadores.acessibilidade_tecnologica_pdf:
+  path: '/indicadores/acessibilidade_tecnologica/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AcessibilidadeTecnologicaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
 
-## Início rotas para relatório de ?????? ##
+## Início rotas para relatório de Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos ##
+indicadores.aquisicao:
+  path: '/indicadores/aquisicao'
+  defaults:
+    _title: 'Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos'
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.aquisicao_excel:
+  path: '/indicadores/aquisicao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
 
+indicadores.aquisicao_pdf:
+  path: '/indicadores/aquisicao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AquisicaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Assistência ao Usuário e Normalização Técnica ##
+indicadores.assistencia_normalizacao:
+  path: '/indicadores/assistencia_normalizacao'
+  defaults:
+    _title: 'Assistência ao Usuário e Normalização Técnica'
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.assistencia_normalizacao_excel:
+  path: '/indicadores/assistencia_normalizacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.assistencia_normalizacao_pdf:
+  path: '/indicadores/assistencia_normalizacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AssistenciaNormalizacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP ##
+indicadores.atendimento_comutacao:
+  path: '/indicadores/atendimento_comutacao'
+  defaults:
+    _title: 'Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.atendimento_comutacao_excel:
+  path: '/indicadores/atendimento_comutacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.atendimento_comutacao_pdf:
+  path: '/indicadores/atendimento_comutacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP - como Biblioteca Solicitante ##
+indicadores.atendimento_comutacao_solicitante:
+  path: '/indicadores/atendimento_comutacao_solicitante'
+  defaults:
+    _title: 'Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.atendimento_comutacao_solicitante_excel:
+  path: '/indicadores/atendimento_comutacao_solicitante/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.atendimento_comutacao_solicitante_pdf:
+  path: '/indicadores/atendimento_comutacao_solicitante/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AtendimentoComutacaoSolicitanteController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Dados Administrativos - Número de Assentos para Usuários e Área Fisica ##
+indicadores.administrativo_area:
+  path: '/indicadores/administrativo_area'
+  defaults:
+    _title: 'Dados Administrativos - Número de Assentos para Usuários e Área Fisica'
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.administrativo_area_excel:
+  path: '/indicadores/administrativo_area/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.administrativo_area_pdf:
+  path: '/indicadores/administrativo_area/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoAreaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Dados Administrativos - Recursos Humanos das Bibliotecas da USP ##
+indicadores.administrativo_rh:
+  path: '/indicadores/administrativo_rh'
+  defaults:
+    _title: 'Dados Administrativos - Recursos Humanos das Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\AdministrativoRHController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.administrativo_rh_excel:
+  path: '/indicadores/administrativo_rh/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoRHController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.administrativo_rh_pdf:
+  path: '/indicadores/administrativo_rh/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\AdministrativoRHController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
+indicadores.internet_redes:
+  path: '/indicadores/internet_redes'
+  defaults:
+    _title: 'Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\InternetRedesController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.internet_redes_excel:
+  path: '/indicadores/internet_redes/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\InternetRedesController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.internet_redes_pdf:
+  path: '/indicadores/internet_redes/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\InternetRedesController::pdf'
+  requirements:
+    _permission: 'access administration pages'

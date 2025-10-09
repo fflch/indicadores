@@ -4,17 +4,13 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcervoFasciculosBacklog {
+Class AdministrativoArea {
     public static function prepareData($webform){
-        $acervo = [];
+        $area_assentos = [];
 
         $submissions = \Drupal::entityTypeManager()
             ->getStorage('webform_submission')
             ->loadByProperties(['webform_id' => $webform->id()]);
-
-        $total_materiais_cadastrados     = 0;
-        $total_materiais_nao_cadastrados = 0;
-        $total_backlog_catalogacao       = 0;
 
         foreach($submissions as $submission){
             if ($submission->isDraft()) continue;
@@ -23,28 +19,16 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
-            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
-            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
-
             $linha = [
                 $unidade, 
-                $data['cadastrados_atualmente_periodicos'], 
-                $data['materiais_nao_cadastrados_periodicos'], 
-                $data['backlog_catalogacao']
+                $data['numero_de_assentos'], 
+                $data['area_fisica_agrupada']
             ];
 
-            array_push($acervo, $linha);
+            array_push($area_assentos, $linha);
         }
-
-        array_push($acervo, [
-            'TOTAL',
-            $total_materiais_cadastrados,
-            $total_materiais_nao_cadastrados,
-            $total_backlog_catalogacao
-        ]);
         
-        return $acervo;
+        return $area_assentos;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -77,17 +61,13 @@ Class AcervoFasciculosBacklog {
             }
         </style>
     
-        <h2>Acervo de Fascículos de Periódicos e Backlog de Catalogação</h2>
+        <h2>Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos</h2>
         <table>
             <thead>
                 <tr>
-                    <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Periódicos (Fascículos)</th>
-                    <th rowspan="2" style="width: 30%;">Backlog Catalogação - Materiais não Cadastrados no DEDALUS (livros, teses, multimeios e outros tipos)</th>
-                </tr>
-                <tr>
-                    <th>Materiais cadastrados no DEDALUS até a presente data</th>
-                    <th>Materiais não Cadastrados no DEDALUS</th>
+                    <th>Biblioteca</th>
+                    <th>Número de Assentos para usuários</th>
+                    <th>Área Física (em m²)</th>
                 </tr>
             </thead>
             <tbody>';

@@ -4,17 +4,25 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcervoFasciculosBacklog {
+Class AtendimentoComutacao {
     public static function prepareData($webform){
-        $acervo = [];
+        $atendimento_comutacao = [];
 
         $submissions = \Drupal::entityTypeManager()
             ->getStorage('webform_submission')
             ->loadByProperties(['webform_id' => $webform->id()]);
 
-        $total_materiais_cadastrados     = 0;
-        $total_materiais_nao_cadastrados = 0;
-        $total_backlog_catalogacao       = 0;
+        $total_abcd          = 0;
+        $total_comut         = 0;
+        $total_outros        = 0;
+        $total_internacional = 0;
+
+        $campos_total_unidade = [
+            'pedidos_atendidos_nacional_bibliusp',
+            'pedidos_atendidos_nacional_comut',
+            'pedidos_atendidos_nacional_outros',
+            'pedidos_atendidos_internacional',
+        ];
 
         foreach($submissions as $submission){
             if ($submission->isDraft()) continue;
@@ -23,28 +31,40 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
-            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
-            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
+            $total_abcd          += self::toInt($data['pedidos_atendidos_nacional_bibliusp']);
+            $total_comut         += self::toInt($data['pedidos_atendidos_nacional_comut']);
+            $total_outros        += self::toInt($data['pedidos_atendidos_nacional_outros']);
+            $total_internacional += self::toInt($data['pedidos_atendidos_internacional']);
+            
+            $total_unidade = 0;
+            foreach($campos_total_unidade as $campo){
+                $total_unidade += self::toInt($data[$campo]); 
+            }
 
             $linha = [
                 $unidade, 
-                $data['cadastrados_atualmente_periodicos'], 
-                $data['materiais_nao_cadastrados_periodicos'], 
-                $data['backlog_catalogacao']
+                $data['pedidos_atendidos_nacional_bibliusp'], 
+                $data['pedidos_atendidos_nacional_comut'], 
+                $data['pedidos_atendidos_nacional_outros'],
+                $data['pedidos_atendidos_internacional'],
+                $total_unidade
             ];
 
-            array_push($acervo, $linha);
+            array_push($atendimento_comutacao, $linha);
         }
 
-        array_push($acervo, [
+        $total = $total_abcd + $total_comut + $total_outros + $total_internacional;
+
+        array_push($atendimento_comutacao, [
             'TOTAL',
-            $total_materiais_cadastrados,
-            $total_materiais_nao_cadastrados,
-            $total_backlog_catalogacao
+            $total_abcd,
+            $total_comut,
+            $total_outros,
+            $total_internacional,
+            $total,
         ]);
         
-        return $acervo;
+        return $atendimento_comutacao;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -77,17 +97,19 @@ Class AcervoFasciculosBacklog {
             }
         </style>
     
-        <h2>Acervo de Fascículos de Periódicos e Backlog de Catalogação</h2>
+        <h2>Atendimento de Comutação Bibliográfica pelas Bibliotecas da USP</h2>
         <table>
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Periódicos (Fascículos)</th>
-                    <th rowspan="2" style="width: 30%;">Backlog Catalogação - Materiais não Cadastrados no DEDALUS (livros, teses, multimeios e outros tipos)</th>
+                    <th colspan="3">Comutação Nacional</th>
+                    <th rowspan="2">Comutação Internacional</th>
+                    <th rowspan="2">Total</th>
                 </tr>
                 <tr>
-                    <th>Materiais cadastrados no DEDALUS até a presente data</th>
-                    <th>Materiais não Cadastrados no DEDALUS</th>
+                    <th>ABCD</th>
+                    <th>COMUT</th>
+                    <th>OUTROS</th>
                 </tr>
             </thead>
             <tbody>';

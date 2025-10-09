@@ -4,18 +4,15 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcessibilidadeGeral {
-
+Class InternetRedes {
     public static function prepareData($webform){
-        $acessibilidade = [];
+        $internetRedes = [
+            ['Unidade', 'Oferece serviços pela internet?', 'Possui rede sem fio?']
+        ];
 
         $counterSim = [
-            'condicoesAcessibilidade' => 0,
-            'atendenteLibras'         => 0,
-            'banheirosAcessiveis'     => 0,
-            'bebedourosAcessiveis'    => 0,
-            'entradasAcessiveis'      => 0,
-            'equipamentosAcessiveis'  => 0
+            'ofereceServicosInternet' => 0,
+            'possuiRedeSemFio'         => 0,
         ];
 
         $counterNao = $counterSim;
@@ -31,12 +28,8 @@ Class AcessibilidadeGeral {
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
     
             $respostas = [
-                'condicoesAcessibilidade' => $data['condicoes_de_acessibilidade'],
-                'atendenteLibras'         => $data['funcionario_treinado_em_libras'],
-                'banheirosAcessiveis'     => $data['banheiros_adaptados'],
-                'bebedourosAcessiveis'    => $data['bebedouros_lavabos_adaptados'],
-                'entradasAcessiveis'      => $data['dimensionamento_entradas_seg_versao'],
-                'equipamentosAcessiveis'  => $data['equipamentos_eletronicos_adaptados'],
+                'ofereceServicosInternet' => $data['servicos_pela_internet'],
+                'possuiRedeSemFio'        => $data['rede_sem_fio'],
             ];
 
             foreach($respostas as $chave => $valor) {
@@ -47,7 +40,7 @@ Class AcessibilidadeGeral {
                 }
             }
 
-            array_push($acessibilidade, array_merge([$unidade], array_values($respostas)));
+            array_push($internetRedes, array_merge([$unidade], array_values($respostas)));
         }
 
         $counterTotal = [];
@@ -57,11 +50,11 @@ Class AcessibilidadeGeral {
             $counterTotal[$chave] = $valorSim + $valorNao;
         }
 
-        array_push($acessibilidade, array_merge(['TOTAL SIM'], array_values($counterSim)));
-        array_push($acessibilidade, array_merge(['TOTAL NÃO'], array_values($counterNao)));
-        array_push($acessibilidade, array_merge(['TOTAL'], array_values($counterTotal)));
+        array_push($internetRedes, array_merge(['TOTAL SIM'], array_values($counterSim)));
+        array_push($internetRedes, array_merge(['TOTAL NÃO'], array_values($counterNao)));
+        array_push($internetRedes, array_merge(['TOTAL'], array_values($counterTotal)));
         
-        return $acessibilidade;
+        return $internetRedes;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -89,23 +82,7 @@ Class AcessibilidadeGeral {
                 background-color: #f9f9f9;
             }
         </style>
-        <table>
-            <thead>
-                <tr>
-                    <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Acessibilidade</th>
-                    <th colspan="4">Acessibilidade Geral e Física</th>
-                </tr>
-                <tr>
-                    <th>Oferece condições de acessibilidade?</th>
-                    <th>Atendente treinado na Língua Brasileira de Sinais (Libras)?</th>
-                    <th>Banheiros e lavabos acessíveis</th>
-                    <th>Bebedouros acessíveis</th>
-                    <th>Entrada/saída com vão livre acessível para circulação de pessoas com deficiência e mobilidade reduzida</th>
-                    <th>Equipamento eletromecânico (elevadores, esteiras rolantes, entre outros)</th>
-                </tr>
-            </thead>
-            <tbody>';
+        <table>';
         
         foreach ($dataArray as $linha) {
             $html .= '<tr>';

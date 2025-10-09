@@ -4,18 +4,18 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcessibilidadeGeral {
+Class AcessibilidadeTecnologica {
 
     public static function prepareData($webform){
         $acessibilidade = [];
 
         $counterSim = [
-            'condicoesAcessibilidade' => 0,
-            'atendenteLibras'         => 0,
-            'banheirosAcessiveis'     => 0,
-            'bebedourosAcessiveis'    => 0,
-            'entradasAcessiveis'      => 0,
-            'equipamentosAcessiveis'  => 0
+            'planoAquisicaoConteudoAcessivel' => 0,
+            'acervoAcessivel'                 => 0,
+            'sitesProgramasAcessiveis'        => 0,
+            'servicosBraille'                 => 0,
+            'leituraDeTela'                   => 0,
+            'tecladoVirtual'                  => 0
         ];
 
         $counterNao = $counterSim;
@@ -29,15 +29,26 @@ Class AcessibilidadeGeral {
 
             $data = $submission->getData();
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
-    
-            $respostas = [
-                'condicoesAcessibilidade' => $data['condicoes_de_acessibilidade'],
-                'atendenteLibras'         => $data['funcionario_treinado_em_libras'],
-                'banheirosAcessiveis'     => $data['banheiros_adaptados'],
-                'bebedourosAcessiveis'    => $data['bebedouros_lavabos_adaptados'],
-                'entradasAcessiveis'      => $data['dimensionamento_entradas_seg_versao'],
-                'equipamentosAcessiveis'  => $data['equipamentos_eletronicos_adaptados'],
-            ];
+
+            if ($data['teclado_virtual'] == 1) {
+                $respostas = [
+                    'planoAquisicaoConteudoAcessivel' => $data['plano_aquisicao_bibliografica_adaptada_seg_versao'],
+                    'acervoAcessivel'                 => $data['acervo_adaptado_seg_versao'],
+                    'sitesProgramasAcessiveis'        => $data['websites_apps_adaptados_seg_versao'],
+                    'servicosBraille'                 => $data['impressoras_braille_seg_versao'],
+                    'leituraDeTela'                   => $data['software_leitura_acessivel_seg_versao'],
+                    'tecladoVirtual'                  => 'Sim'
+                ];
+            } else {
+                $respostas = [
+                    'planoAquisicaoConteudoAcessivel' => $data['plano_aquisicao_bibliografica_adaptada_seg_versao'],
+                    'acervoAcessivel'                 => $data['acervo_adaptado_seg_versao'],
+                    'sitesProgramasAcessiveis'        => $data['websites_apps_adaptados_seg_versao'],
+                    'servicosBraille'                 => $data['impressoras_braille_seg_versao'],
+                    'leituraDeTela'                   => $data['software_leitura_acessivel_seg_versao'],
+                    'tecladoVirtual'                  => 'Não'
+                ];
+            }
 
             foreach($respostas as $chave => $valor) {
                 if($valor === 'Sim'){
@@ -93,16 +104,16 @@ Class AcessibilidadeGeral {
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Acessibilidade</th>
-                    <th colspan="4">Acessibilidade Geral e Física</th>
+                    <th colspan="3">Acessibilidade de Conteúdo</th>
+                    <th colspan="3">Acessibilidade de Tecnologia</th>
                 </tr>
                 <tr>
-                    <th>Oferece condições de acessibilidade?</th>
-                    <th>Atendente treinado na Língua Brasileira de Sinais (Libras)?</th>
-                    <th>Banheiros e lavabos acessíveis</th>
-                    <th>Bebedouros acessíveis</th>
-                    <th>Entrada/saída com vão livre acessível para circulação de pessoas com deficiência e mobilidade reduzida</th>
-                    <th>Equipamento eletromecânico (elevadores, esteiras rolantes, entre outros)</th>
+                    <th>Plano de aquisição gradual de acervo bibliográfico dos conteúdos básicos em formato acessível</th>
+                    <th>Acervo em formato acessível para pessoas com deficiência visual (cegueira e baixa visão)</th>
+                    <th>Sítios, plataformas e programas acessíveis para que pessoas com deficiência naveguem e utilizem os serviços oferecidos com autonomia</th>
+                    <th>Serviços de impressão em Braille</th>                    
+                    <th>Leitores de tela para pessoas com deficiência visual (cegueira e baixa visão)</th>
+                    <th>Teclado virtual</th>
                 </tr>
             </thead>
             <tbody>';

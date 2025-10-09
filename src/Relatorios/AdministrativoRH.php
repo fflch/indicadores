@@ -4,17 +4,22 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcervoFasciculosBacklog {
+Class AdministrativoRH {
     public static function prepareData($webform){
-        $acervo = [];
+        $recursos_funcionarios = [];
 
         $submissions = \Drupal::entityTypeManager()
             ->getStorage('webform_submission')
             ->loadByProperties(['webform_id' => $webform->id()]);
 
-        $total_materiais_cadastrados     = 0;
-        $total_materiais_nao_cadastrados = 0;
-        $total_backlog_catalogacao       = 0;
+        $total_funcionarios   = 0;
+
+        $keys_nivel_superior = [
+            'funcionarios_superior',
+            'funcionarios_superior_especializacao',
+            'funcionarios_superior_mestrado',
+            'funcionarios_superior_doutorado',
+        ];
 
         foreach($submissions as $submission){
             if ($submission->isDraft()) continue;
@@ -23,28 +28,29 @@ Class AcervoFasciculosBacklog {
             
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
 
-            $total_materiais_cadastrados     += self::toInt($data['cadastrados_atualmente_periodicos']);
-            $total_materiais_nao_cadastrados += self::toInt($data['materiais_nao_cadastrados_periodicos']);
-            $total_backlog_catalogacao       += self::toInt($data['backlog_catalogacao']);
+            $total_nivel_superior = 0;
+            foreach($keys_nivel_superior as $key){
+                $total_nivel_superior += self::toInt($data[$key]);
+            }
+
+            $total_funcionarios = $total_nivel_superior + self::toInt($data['funcionarios_tecnico']) + self::toInt($data['funcionarios_basico']);
 
             $linha = [
                 $unidade, 
-                $data['cadastrados_atualmente_periodicos'], 
-                $data['materiais_nao_cadastrados_periodicos'], 
-                $data['backlog_catalogacao']
+                $data['funcionarios_superior'],
+                $data['funcionarios_superior_especializacao'],
+                $data['funcionarios_superior_mestrado'],
+                $data['funcionarios_superior_doutorado'],
+                $total_nivel_superior,
+                $data['funcionarios_tecnico'],
+                $data['funcionarios_basico'],
+                $total_funcionarios
             ];
 
-            array_push($acervo, $linha);
+            array_push($recursos_funcionarios, $linha);
         }
-
-        array_push($acervo, [
-            'TOTAL',
-            $total_materiais_cadastrados,
-            $total_materiais_nao_cadastrados,
-            $total_backlog_catalogacao
-        ]);
         
-        return $acervo;
+        return $recursos_funcionarios;
     }
 
     public static function createHtmlTable(array $dataArray) {
@@ -77,17 +83,22 @@ Class AcervoFasciculosBacklog {
             }
         </style>
     
-        <h2>Acervo de Fascículos de Periódicos e Backlog de Catalogação</h2>
+        <h2>Aquisição de Livros/Outros Tipos de Materiais e Títulos Correntes de Periódicos</h2>
         <table>
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Periódicos (Fascículos)</th>
-                    <th rowspan="2" style="width: 30%;">Backlog Catalogação - Materiais não Cadastrados no DEDALUS (livros, teses, multimeios e outros tipos)</th>
+                    <th colspan="5">Funcionário de Nível Superior</th>
+                    <th rowspan="2">Funcionário de Nível Técnico</th>
+                    <th rowspan="2">Funcionário de Nível Básico</th>
+                    <th rowspan="2">Total Funcionários</th>
                 </tr>
                 <tr>
-                    <th>Materiais cadastrados no DEDALUS até a presente data</th>
-                    <th>Materiais não Cadastrados no DEDALUS</th>
+                    <th>Graduação</th>
+                    <th>Especialização</th>
+                    <th>Mestrado</th>
+                    <th>Doutorado</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>';

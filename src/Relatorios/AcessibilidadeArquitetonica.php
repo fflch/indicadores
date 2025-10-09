@@ -4,18 +4,19 @@ namespace Drupal\indicadores\Relatorios;
 
 use Drupal\webform\Entity\Webform;
 
-Class AcessibilidadeGeral {
+Class AcessibilidadeArquitetonica {
 
     public static function prepareData($webform){
         $acessibilidade = [];
 
         $counterSim = [
-            'condicoesAcessibilidade' => 0,
-            'atendenteLibras'         => 0,
-            'banheirosAcessiveis'     => 0,
-            'bebedourosAcessiveis'    => 0,
-            'entradasAcessiveis'      => 0,
-            'equipamentosAcessiveis'  => 0
+            'atendimentoAcessivel' => 0,
+            'mobiliarioAcessivel'  => 0,
+            'rampaDeAcesso'        => 0,
+            'sinalizacaoTatil'     => 0,
+            'sinalizacaoVisual'    => 0,
+            'sinalizacaoSonora'    => 0,
+            'ambientesAcessiveis'  => 0
         ];
 
         $counterNao = $counterSim;
@@ -31,12 +32,13 @@ Class AcessibilidadeGeral {
             $unidade = strtoupper($submission->getOwner()->getDisplayName());
     
             $respostas = [
-                'condicoesAcessibilidade' => $data['condicoes_de_acessibilidade'],
-                'atendenteLibras'         => $data['funcionario_treinado_em_libras'],
-                'banheirosAcessiveis'     => $data['banheiros_adaptados'],
-                'bebedourosAcessiveis'    => $data['bebedouros_lavabos_adaptados'],
-                'entradasAcessiveis'      => $data['dimensionamento_entradas_seg_versao'],
-                'equipamentosAcessiveis'  => $data['equipamentos_eletronicos_adaptados'],
+                'atendimentoAcessivel' => $data['espaco_atendimento_adaptado_seg_versao'],
+                'mobiliarioAcessivel'  => $data['mobiliario_adaptado_seg_versao'],
+                'rampaDeAcesso'        => $data['rampa_acesso_adaptada'],
+                'sinalizacaoTatil'     => $data['sinalizacao_tatil'],
+                'sinalizacaoVisual'    => $data['sinalizacao_visual'],
+                'sinalizacaoSonora'    => $data['sinalizacao_sonora'],
+                'ambientesAcessiveis'  => $data['desobstrucao_ambientes_seg_versao'],
             ];
 
             foreach($respostas as $chave => $valor) {
@@ -93,16 +95,16 @@ Class AcessibilidadeGeral {
             <thead>
                 <tr>
                     <th rowspan="2">Biblioteca</th>
-                    <th colspan="2">Acessibilidade</th>
-                    <th colspan="4">Acessibilidade Geral e Física</th>
+                    <th colspan="7">Acessibilidade Arquitetônica ou Física</th>
                 </tr>
                 <tr>
-                    <th>Oferece condições de acessibilidade?</th>
-                    <th>Atendente treinado na Língua Brasileira de Sinais (Libras)?</th>
-                    <th>Banheiros e lavabos acessíveis</th>
-                    <th>Bebedouros acessíveis</th>
-                    <th>Entrada/saída com vão livre acessível para circulação de pessoas com deficiência e mobilidade reduzida</th>
-                    <th>Equipamento eletromecânico (elevadores, esteiras rolantes, entre outros)</th>
+                    <th>Espaço para atendimento acessível</th>
+                    <th>Mobiliário acessível</th>
+                    <th>Rampa de acesso com corrimão</th>
+                    <th>Sinalização Tátil</th>                    
+                    <th>Sinalização Visual</th>
+                    <th>Sinalização Sonora</th>
+                    <th>Ambientes acessíveis para a movimentação/deslocamento/circulação de pessoas com deficiência e mobilidade reduzida</th>
                 </tr>
             </thead>
             <tbody>';
