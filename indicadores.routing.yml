@@ -352,6 +352,29 @@ indicadores.administrativo_rh_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Equipamentos de Informática nas Bibliotecas da USP ##
+indicadores.equipamentos_informatica:
+  path: '/indicadores/equipamentos_informatica'
+  defaults:
+    _title: 'Equipamentos de Informática nas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.equipamentos_informatica_excel:
+  path: '/indicadores/equipamentos_informatica/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.equipamentos_informatica_pdf:
+  path: '/indicadores/equipamentos_informatica/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
