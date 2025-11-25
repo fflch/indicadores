@@ -375,6 +375,29 @@ indicadores.equipamentos_informatica_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Eventos Promovidos pelas Bibliotecas ##
+indicadores.eventos_bibliotecas:
+  path: '/indicadores/eventos_bibliotecas'
+  defaults:
+    _title: 'Eventos Promovidos pelas Bibliotecas'
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.eventos_bibliotecas_excel:
+  path: '/indicadores/eventos_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.eventos_bibliotecas_pdf:
+  path: '/indicadores/eventos_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Frequência às Bibliotecas da USP, distribuída por Unidade ##
 indicadores.frequencia_bibliotecas:
   path: '/indicadores/frequencia_bibliotecas'
@@ -395,6 +418,29 @@ indicadores.frequencia_bibliotecas_pdf:
   path: '/indicadores/frequencia_bibliotecas/{webform_id}/pdf'
   defaults:
     _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Projetos das Bibliotecas ##
+indicadores.projetos_bibliotecas:
+  path: '/indicadores/projetos_bibliotecas'
+  defaults:
+    _title: 'Projetos das Bibliotecas'
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.projetos_bibliotecas_excel:
+  path: '/indicadores/projetos_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.projetos_bibliotecas_pdf:
+  path: '/indicadores/projetos_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::pdf'
   requirements:
     _permission: 'access administration pages'
 

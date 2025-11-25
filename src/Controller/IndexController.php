@@ -30,10 +30,10 @@ class IndexController extends ControllerBase {
                 <li><a href="/indicadores/administrativo_rh">Dados Administrativos - Recursos Humanos das Bibliotecas da USP</a></li>
                 <li><a href="/indicadores/XXXXX">[Em construção] Dissertações e Teses Defendidas na USP e Cadastradas no DEDALUS</a></li>
                 <li><a href="/indicadores/equipamentos_informatica">Equipamentos de Informática nas Bibliotecas da USP</a></li>
-                <li><a href="/indicadores/XXXXX">[Em construção] Eventos Promovidos pelas Bibliotecas e com Participação das Bibliotecas</a></li>
+                <li><a href="/indicadores/eventos_bibliotecas">Eventos Promovidos pelas Bibliotecas e com Participação das Bibliotecas</a></li>
                 <li><a href="/indicadores/frequencia_bibliotecas">Frequência às Bibliotecas da USP, distribuída por Unidade</a></li>
                 <li><a href="/indicadores/XXXXX">[Em construção] Participação das Equipes das Bibliotecas em Ações de Capacitação</a></li>
-                <li><a href="/indicadores/XXXXX">[Em construção] Projetos das Bibliotecas USP</a></li>
+                <li><a href="/indicadores/projetos_bibliotecas">Projetos das Bibliotecas USP</a></li>
                 <li><a href="/indicadores/XXXXX">[Em construção] Publicações Editadas pelas Bibliotecas</a></li>
                 <li><a href="/indicadores/XXXXX">[Em construção] Publicações Oficiais Editadas pelas Unidades com a Participação das Bibliotecas</a></li>
                 <li><a href="/indicadores/internet_redes">Serviços pela Internet e Rede sem Fio nas Bibliotecas da USP</a></li>
