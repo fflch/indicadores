@@ -375,6 +375,29 @@ indicadores.equipamentos_informatica_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Frequência às Bibliotecas da USP, distribuída por Unidade ##
+indicadores.frequencia_bibliotecas:
+  path: '/indicadores/frequencia_bibliotecas'
+  defaults:
+    _title: 'Frequência às Bibliotecas da USP, distribuída por Unidade'
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.frequencia_bibliotecas_excel:
+  path: '/indicadores/frequencia_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.frequencia_bibliotecas_pdf:
+  path: '/indicadores/frequencia_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
