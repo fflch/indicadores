@@ -26,13 +26,35 @@ Class EventosBibliotecas {
     
                 $total_eventos++;
 
-                // Adicionar um switch aqui para o tipo e para o nível de participação
+                switch ($coleta['tipo']) {
+                    case '1':  $tipo = 'Apresentação em Teatro'; break;
+                    case '2':  $tipo = 'Comunicação'; break;
+                    case '3':  $tipo = 'Concerto'; break;
+                    case '4':  $tipo = 'Conferência'; break;
+                    case '5':  $tipo = 'Congresso'; break;
+                    case '6':  $tipo = 'Convenção'; break;
+                    case '7':  $tipo = 'Exposição'; break;
+                    case '8':  $tipo = 'Grupo de estudos'; break;
+                    case '9':  $tipo = 'Mesa Redonda'; break;
+                    case '10': $tipo = 'Mostra'; break;
+                    case '11': $tipo = 'Palestra'; break;
+                    case '12': $tipo = 'Seminário'; break;
+                    case '13': $tipo = 'Simpósio'; break;
+                    case '14': $tipo = 'Workshop'; break;
+                    case '15': $tipo = 'Coletiva de Autores'; break;
+                    case '16': $tipo = 'Lançamento de Livros'; break;
+                    case '17': $tipo = 'Lançamento de Produtos/Serviços'; break;
+                    case '18': $tipo = 'Outros'; break;
+                    default:   $tipo = 'Não informado'; break;
+                }
+
+                $nivel_participacao = ($coleta['nivel_participacao'] == '1') ? 'Evento Totalmente realizado pela Biblioteca' : 'Participação na Comissão Organizadora';
     
                 $texto = $coleta['nome'] . "\n"
                 . $coleta['periodo'] . "\n"
                 . $coleta['apoiador'] . "\n"
-                . $coleta['tipo'] . "\n"
-                . $coleta['nivel_participacao'] . "\n";
+                . $tipo . "\n"
+                . $nivel_participacao . "\n";
             
                 $linha = [
                     $unidade,
