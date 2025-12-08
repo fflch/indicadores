@@ -421,6 +421,29 @@ indicadores.frequencia_bibliotecas_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Participação das Equipes das Bibliotecas em Ações de Capacitação ##
+indicadores.participacao_capacitacao:
+  path: '/indicadores/participacao_capacitacao'
+  defaults:
+    _title: 'Participação das Equipes das Bibliotecas em Ações de Capacitação'
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.participacao_capacitacao_excel:
+  path: '/indicadores/participacao_capacitacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.participacao_capacitacao_pdf:
+  path: '/indicadores/participacao_capacitacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Projetos das Bibliotecas ##
 indicadores.projetos_bibliotecas:
   path: '/indicadores/projetos_bibliotecas'
