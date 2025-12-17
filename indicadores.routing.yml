@@ -352,6 +352,121 @@ indicadores.administrativo_rh_pdf:
   requirements:
     _permission: 'access administration pages'
 
+## Início rotas para relatório de Equipamentos de Informática nas Bibliotecas da USP ##
+indicadores.equipamentos_informatica:
+  path: '/indicadores/equipamentos_informatica'
+  defaults:
+    _title: 'Equipamentos de Informática nas Bibliotecas da USP'
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.equipamentos_informatica_excel:
+  path: '/indicadores/equipamentos_informatica/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.equipamentos_informatica_pdf:
+  path: '/indicadores/equipamentos_informatica/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EquipamentosInformaticaController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Eventos Promovidos pelas Bibliotecas ##
+indicadores.eventos_bibliotecas:
+  path: '/indicadores/eventos_bibliotecas'
+  defaults:
+    _title: 'Eventos Promovidos pelas Bibliotecas'
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.eventos_bibliotecas_excel:
+  path: '/indicadores/eventos_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.eventos_bibliotecas_pdf:
+  path: '/indicadores/eventos_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\EventosBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Frequência às Bibliotecas da USP, distribuída por Unidade ##
+indicadores.frequencia_bibliotecas:
+  path: '/indicadores/frequencia_bibliotecas'
+  defaults:
+    _title: 'Frequência às Bibliotecas da USP, distribuída por Unidade'
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.frequencia_bibliotecas_excel:
+  path: '/indicadores/frequencia_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.frequencia_bibliotecas_pdf:
+  path: '/indicadores/frequencia_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\FrequenciaBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Participação das Equipes das Bibliotecas em Ações de Capacitação ##
+indicadores.participacao_capacitacao:
+  path: '/indicadores/participacao_capacitacao'
+  defaults:
+    _title: 'Participação das Equipes das Bibliotecas em Ações de Capacitação'
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.participacao_capacitacao_excel:
+  path: '/indicadores/participacao_capacitacao/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.participacao_capacitacao_pdf:
+  path: '/indicadores/participacao_capacitacao/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ParticipacaoCapacitacaoController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
+## Início rotas para relatório de Projetos das Bibliotecas ##
+indicadores.projetos_bibliotecas:
+  path: '/indicadores/projetos_bibliotecas'
+  defaults:
+    _title: 'Projetos das Bibliotecas'
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::index'
+  requirements:
+    _permission: 'access administration pages'
+    
+indicadores.projetos_bibliotecas_excel:
+  path: '/indicadores/projetos_bibliotecas/{webform_id}/excel'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::excel'
+  requirements:
+    _permission: 'access administration pages'
+
+indicadores.projetos_bibliotecas_pdf:
+  path: '/indicadores/projetos_bibliotecas/{webform_id}/pdf'
+  defaults:
+    _controller: '\Drupal\indicadores\Controller\ProjetosBibliotecasController::pdf'
+  requirements:
+    _permission: 'access administration pages'
+
 ## Início rotas para relatório de Serviços pela Internet e Rede Sem Fio nas Bibliotecas da USP ##
 indicadores.internet_redes:
   path: '/indicadores/internet_redes'
